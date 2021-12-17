@@ -9,6 +9,7 @@ Trtyolosort::Trtyolosort(char *yolo_engine_path,char *sort_engine_path){
 	trt_engine = yolov5_trt_create(yolo_engine_path_);
 	printf("create yolov5-trt , instance = %p\n", trt_engine);
 	DS = new DeepSort(sort_engine_path_, 128, 256, 0, &gLogger);
+	printf("create DS-trt , instance = %p\n", DS);
 
 }
 void Trtyolosort::showDetection(cv::Mat& img, std::vector<DetectBox>& boxes) {
@@ -29,7 +30,7 @@ int Trtyolosort::TrtDetect(cv::Mat &frame,float &conf_thresh,std::vector<DetectB
 	// yolo detect
 	auto ret = yolov5_trt_detect(trt_engine, frame, conf_thresh,det);
 	DS->sort(frame,det);
-	//showDetection(frame,det);
+	showDetection(frame,det);
 	return 1 ;
 	
 }
