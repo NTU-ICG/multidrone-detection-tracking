@@ -18,8 +18,8 @@ int main(){
 	map<int,vector<int>> personstate;
 	map<int,int> classidmap;
 	bool is_first = true;
-	// char yolo_engine[]	 = "../resources/yolov5s.engine";
-	char yolo_engine[]	 = "../resources/best.engine";
+	// char yolo_engine[]	 = "../resources/yolov5s1.engine";
+	char yolo_engine[]	 = "../resources/best_colab.engine";
 	char sort_engine[] = "../resources/deepsort.engine";
 	float conf_thre = 0.4;
 	Trtyolosort yosort(yolo_engine,sort_engine);	
@@ -28,7 +28,8 @@ int main(){
 	// frame = capture.open("../drone_resources/2021-09-01_15.41.54.mp4");
 	// frame = capture.open("../drone_resources/20211028_121335.mp4");
 	// frame = capture.open("../drone_resources/test.mp4");
-	frame = capture.open(0);
+	frame = capture.open("../resources/VID_20220207_160707 1.mp4");
+	// frame = capture.open(0);
 	if (!capture.isOpened()){
 		std::cout<<"can not open"<<std::endl;
 		return -1 ;

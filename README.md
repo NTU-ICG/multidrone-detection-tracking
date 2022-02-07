@@ -41,8 +41,24 @@ and attention!!! the number of deepsort tracking is 70+, not single or 10-20 per
 | Yolov5s-640 | 120ms             | 1s|18-20ms|100-150ms                      | 8 ~ 9                     |
 
 ------
+## Errors
+- If you meet the following error during building `fatal error: Eigen/Core: No such file or directory #include <Eigen/Core>`. Run the following 
+```shell
+sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen
+```
+
+- The following problem may occur when generating the `wts` file.
+```shell
+ImportError: /usr/lib/aarch64-linux-gnu/libgomp.so.1: cannot allocate memory in static TLS block
+```
+Run the following in terminal. [Credits](https://github.com/keras-team/keras-tuner/issues/317)
+```shell
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
+```
 
 ## Build and Run
+
+
 
 ```shell
 git clone https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt.git
