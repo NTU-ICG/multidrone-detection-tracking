@@ -56,6 +56,18 @@ Run the following in terminal. [Credits](https://github.com/keras-team/keras-tun
 export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
 ```
 
+- When making yolosort, the following errors occur due to `OpenCV` in Jetson Xavier.
+```
+CMake Error at /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake:113 message): Project 'cv_bridge' specifies '/usr/include/opencv' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '${{prefix}}//usr/include/opencv'. Check the issue tracker 'https://github.com/ros-perception/vision_opencv/issues' and consider creating a ticket if the problem has not been reported yet.
+```
+
+[Fix](https://github.com/ros-perception/vision_opencv/issues/345): open the file `/opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake`
+and change this line:
+
+`set(_include_dirs "include;/usr/include;/usr/include/opencv")`
+to `set(_include_dirs "include;/usr/include;/usr/include/opencv4")`
+
+
 ## Build and Run
 
 

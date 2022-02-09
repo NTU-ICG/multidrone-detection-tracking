@@ -12,7 +12,7 @@ Trtyolosort::Trtyolosort(char *yolo_engine_path,char *sort_engine_path){
 	printf("create DS-trt , instance = %p\n", DS);
 
 }
-void Trtyolosort::showDetection(cv::Mat& img, std::vector<DetectBox>& boxes) {
+void Trtyolosort::showDetection(cv::Mat& img, std::vector<DetectBox>& boxes, const std::string& named_window) {
     cv::Mat temp = img.clone();
     for (auto box : boxes) {
         cv::Point lt(box.x1, box.y1);
@@ -23,14 +23,15 @@ void Trtyolosort::showDetection(cv::Mat& img, std::vector<DetectBox>& boxes) {
 		std::string lbl = cv::format("ID:%d_x:%f_y:%f",(int)box.trackID,(box.x1+box.x2)/2,(box.y1+box.y2)/2);
         cv::putText(temp, lbl, lt, cv::FONT_HERSHEY_COMPLEX, 0.5, cv::Scalar(0,255,0));
     }
-    cv::imshow("img", temp);
+    cv::imshow(named_window, temp);
     cv::waitKey(1);
 }
 int Trtyolosort::TrtDetect(cv::Mat &frame,float &conf_thresh,std::vector<DetectBox> &det){
 	// yolo detect
 	auto ret = yolov5_trt_detect(trt_engine, frame, conf_thresh,det);
+	showDetection(frame,det,"det");
 	DS->sort(frame,det);
-	showDetection(frame,det);
+	showDetection(frame,det,"track");
 	return 1 ;
 	
 }

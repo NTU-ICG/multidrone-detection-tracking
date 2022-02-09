@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.6)
 project(yolosort)
 list(APPEND CUDA_NVCC_FLAGS "-std=c++11")
 set(CMAKE_CXX_FLAGS "-std=c++0x")
+find_package(catkin REQUIRED COMPONENTS cv_bridge image_transport std_msgs)
+include_directories(${catkin_INCLUDE_DIRS})
 find_package(OpenCV REQUIRED)
 add_definitions(-std=c++11)
 add_definitions(-DAPI_EXPORTS)
@@ -54,8 +56,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/src M_SRC_DIR)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(yolosort ${M_SRC_DIR})
-
-target_link_libraries(yolosort nvinfer cudart yolov5_trt)
+target_link_libraries(yolosort nvinfer cudart yolov5_trt ${catkin_LIBRARIES})
 
 if(UNIX)
 add_definitions(-O2 -pthread)
