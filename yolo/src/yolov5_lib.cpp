@@ -171,7 +171,7 @@ int yolov5_trt_detect(void *h, cv::Mat &img, float threshold,std::vector<DetectB
     auto end = std::chrono::system_clock::now();
     delay_infer = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
  
-    std::cout <<"delay_proress:" << delay_preprocess << "ms, " << "delay_infer:" << delay_infer << "ms" << std::endl;
+    // std::cout <<"delay_proress:" << delay_preprocess << "ms, " << "delay_infer:" << delay_infer << "ms" << std::endl;
  
     //printf("yolov5_trt_detect start do process infer result \n");
  

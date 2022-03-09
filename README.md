@@ -82,6 +82,30 @@ make
 ```
 if you meet some errors in cmake and make, please see this [artical](https://blog.csdn.net/weixin_42264234/article/details/120152117) or see Attention.
 
+
+## ROS commands
+
+You need to follow the instructions from [darknet_ros](https://github.com/leggedrobotics/darknet_ros) and build.
+
+First tab
+```shell 
+roscore
+```
+Second tab
+```shell
+rosbag play 2022-02-09-13-50-38.bag
+```
+
+Third tab (start yolosort)
+```shell
+source ~/catkin_ws/devel/setup.bash
+./yolosort
+```
+Fourth tab
+```shell
+rostopic echo /detection/bounding_boxes 
+```
+
 ## DataSet
 If you need to train your own model with head detection, you can use this [SCUT-HEAD](https://github.com/HCIILAB/SCUT-HEAD-Dataset-Release), this dataset has bbox with head and can download freely.
 

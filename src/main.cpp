@@ -13,44 +13,59 @@
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <darknet_ros_msgs/BoundingBox.h>
+#include <darknet_ros_msgs/BoundingBoxes.h>
 using namespace cv;
 
 
 class ImageConverter
 {
-  ros::NodeHandle nh_;
+  ros::NodeHandle nodeHandle_;
   image_transport::ImageTransport it_;
   image_transport::Subscriber image_sub_;
-  image_transport::Publisher image_pub_;
+  ros::Publisher boundingBoxesPublisher_;
+  darknet_ros_msgs::BoundingBoxes boundingBoxesResults_;
+
+
   float conf_thre = 0.4;
   char* yolo_engine = NULL;
   char* sort_engine = NULL;
 
+  std::string boundingBoxesTopicName;
+  int boundingBoxesQueueSize;
+  bool boundingBoxesLatch;
+
   Trtyolosort * yosort;
 
 public:
-  ImageConverter()
-    : it_(nh_)
+  ImageConverter(ros::NodeHandle nh_)
+    : nodeHandle_(nh_), it_(nodeHandle_)
   {
     // Subscrive to input video feed and publish output video feed
     image_sub_ = it_.subscribe("/stereo/left/image_color", 1,
       &ImageConverter::imageCb, this);
-    // image_pub_ = it_.advertise("/image_converter/output_video", 1);
 
-    // cv::namedWindow("source");
-    // cv::namedWindow("canny");
-	yolo_engine = "../resources/best_colab.engine";
+
+    nodeHandle_.param("publishers/bounding_boxes/topic", boundingBoxesTopicName, std::string("bounding_boxes"));
+    nodeHandle_.param("publishers/bounding_boxes/queue_size", boundingBoxesQueueSize, 1);
+    nodeHandle_.param("publishers/bounding_boxes/latch", boundingBoxesLatch, false);
+
+    boundingBoxesPublisher_ = 
+      nodeHandle_.advertise<darknet_ros_msgs::BoundingBoxes>(boundingBoxesTopicName, 
+                                                             boundingBoxesQueueSize, 
+                                                             boundingBoxesLatch);
+
+
+
+	// yolo_engine = "../resources/best_colab.engine";
+  yolo_engine = "../resources/best_6_0_s.engine";
 	sort_engine = "../resources/deepsort.engine";
 	
 	yosort = new Trtyolosort(yolo_engine,sort_engine);
 
   }
 
-  ~ImageConverter()
-  {
-    // cv::destroyWindow("source");
-    // cv::destroyWindow("canny");
-  }
+  ~ImageConverter(){}
 
   void imageCb(const sensor_msgs::ImageConstPtr& msg)
   {
@@ -65,14 +80,35 @@ public:
       return;
     }
 
-	// define engine
-	
 	
 	cv::Mat frame = cv_ptr->image;
 	std::vector<DetectBox> det;
 
 	cv::resize(frame, frame, cv::Size(640, 640));
 	yosort->TrtDetect(frame,conf_thre,det);
+
+
+  for (DetectBox detectbox : det){
+
+    darknet_ros_msgs::BoundingBox boundingBox;
+    
+    boundingBox.Class = detectbox.classID;
+    boundingBox.id = detectbox.trackID;
+    boundingBox.probability = detectbox.confidence;
+    boundingBox.xmin = detectbox.x1;
+    boundingBox.ymin = detectbox.y1;
+    boundingBox.xmax = detectbox.x2;
+    boundingBox.ymax = detectbox.y2;
+    boundingBoxesResults_.bounding_boxes.push_back(boundingBox);
+  }
+
+  boundingBoxesResults_.header.stamp = ros::Time::now();
+  boundingBoxesResults_.header.frame_id = "detection";
+  // boundingBoxesResults_.image_header = headerBuff_[(buffIndex_ + 1) % 3];
+  boundingBoxesPublisher_.publish(boundingBoxesResults_);
+
+  boundingBoxesResults_.bounding_boxes.clear();
+
 
 
     // // Run Canny edge detector on image
@@ -95,11 +131,14 @@ public:
 int main(int argc, char** argv){
 
 	ros::init(argc, argv, "image_converter");
-	ImageConverter ic;
+  ros::NodeHandle nh("/detection");
+	ImageConverter ic(nh);
 	ros::spin();
 	return 0;
 
 	// char yolo_engine[]	 = "../resources/best_colab.engine";
+  // char yolo_engine[]	 = "../resources/best_6_0_s.engine";
+  
 	// char sort_engine[] = "../resources/deepsort.engine";
 	// float conf_thre = 0.4;
 	// Trtyolosort yosort(yolo_engine,sort_engine);	
@@ -120,19 +159,17 @@ int main(int argc, char** argv){
 	
 	// int i = 0;
 	// while(capture.read(frame)){
-	// 	if (i%1==0){
+	// 	// if (i%1==0){
 	// 	cv::resize(frame, frame, cv::Size(640, 640));
-	// 	std::cout<<"origin img size:"<<frame.cols<<" "<<frame.rows<<std::endl;
+	// 	// std::cout<<"origin img size:"<<frame.cols<<" "<<frame.rows<<std::endl;
 	// 	auto start = std::chrono::system_clock::now();
-	// 	// capture >> frame;
-	// 	// imshow("frame", frame);
-	// 	yosort.TrtDetect(frame,conf_thre,det);
 
+	// 	yosort.TrtDetect(frame,conf_thre,det);
 	// 	auto end = std::chrono::system_clock::now();
 	// 	int delay_infer = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-	// 	std::cout  << "delay_infer:" << delay_infer << "ms" << std::endl;
+	// 	// std::cout  << "delay_infer:" << delay_infer << "ms" << std::endl;
 	// 	// if( waitKey(1) == 27 ) break;
-	// 	}
+	// 	// }
 	// 	i++;
 	// }
 	// capture.release();
