@@ -88,11 +88,14 @@ public:
 	yosort->TrtDetect(frame,conf_thre,det);
 
 
+
   for (DetectBox detectbox : det){
 
     darknet_ros_msgs::BoundingBox boundingBox;
     
-    boundingBox.Class = detectbox.classID;
+    std::cout << "CHECK detect x: " << detectbox.x1  << ", y:" << detectbox.y1 << ", confidence: " << (float)detectbox.confidence <<  std::endl;
+
+    // boundingBox.Class = detectbox.classID;
     boundingBox.id = detectbox.trackID;
     boundingBox.probability = detectbox.confidence;
     boundingBox.xmin = detectbox.x1;
@@ -100,6 +103,8 @@ public:
     boundingBox.xmax = detectbox.x2;
     boundingBox.ymax = detectbox.y2;
     boundingBoxesResults_.bounding_boxes.push_back(boundingBox);
+
+    std::cout << "CHECK publish x: " << boundingBox.xmin  << ", y:" << boundingBox.ymin << ", confidence: " << (float)boundingBox.probability <<  std::endl;
   }
 
   boundingBoxesResults_.header.stamp = ros::Time::now();

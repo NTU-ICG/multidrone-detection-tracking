@@ -96,13 +96,14 @@ Second tab
 rosbag play 2022-02-09-13-50-38.bag
 ```
 
-Third tab (start yolosort)
+Third tab (start yolosort), may need to copy the executatble to build
 ```shell
 source ~/catkin_ws/devel/setup.bash
 ./yolosort
 ```
 Fourth tab
 ```shell
+source ~/catkin_ws/devel/setup.bash
 rostopic echo /detection/bounding_boxes 
 ```
 

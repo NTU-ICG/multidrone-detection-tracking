@@ -4,7 +4,25 @@ project(yolosort)
 list(APPEND CUDA_NVCC_FLAGS "-std=c++11")
 set(CMAKE_CXX_FLAGS "-std=c++0x")
 find_package(catkin REQUIRED COMPONENTS cv_bridge image_transport std_msgs darknet_ros_msgs)
-include_directories(${catkin_INCLUDE_DIRS})
+
+add_message_files(
+  FILES
+    BoundingBox.msg
+    BoundingBoxes.msg
+    ObjectCount.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+    actionlib_msgs
+    geometry_msgs
+    sensor_msgs
+    std_msgs
+)
+
+include_directories(
+    ${catkin_INCLUDE_DIRS}
+)
 find_package(OpenCV REQUIRED)
 add_definitions(-std=c++11)
 add_definitions(-DAPI_EXPORTS)
