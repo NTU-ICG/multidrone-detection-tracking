@@ -88,18 +88,16 @@ rosbag play 2022-02-09-13-50-38.bag
 The drone dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing).
 
 ## Model
-You need two model, one is yolov5 model, for detection, generating from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). And the other is deepsort model, for tracking. You should generate the model the same way.
+You need two model, one is yolov5 model for detection, which is generated from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). The other model is deepsort model used for tracking.
 
 There are two models to be generated, one for yolov5 and one for deepsort. The models can be found under resources.
 
 ### YOLOv5 model training
-Yolov5s was chosen for this project.
-
-You can use the following Colab notebook to train on the drones dataset. <a href="https://colab.research.google.com/drive/1ruLEtq_tsy0xN2vebTKmnCOIAOwvgwcB?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+Yolov5s was chosen for this project. You can use the following Colab notebook to train on the drones dataset. <a href="https://colab.research.google.com/drive/1ruLEtq_tsy0xN2vebTKmnCOIAOwvgwcB?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
-Note that, pretrained models for deepsort can be retrieved from [deepsort](https://github.com/ZQPei/deep_sort_pytorch), and if you need to use your own model, refer to `For Other Custom Models` section.
-You can also refer ti [tensorrtx official readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5).
+Note that pretrained models for deepsort can be retrieved from [deepsort](https://github.com/ZQPei/deep_sort_pytorch). If you need to use your own model, refer to `For Other Custom Models` section.
+You can also refer to [tensorrtx official readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5).
 
 The following is deepsort.onnx and deesort.engine files, you can find in baiduyun and [https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort)
 | Model| Url |
@@ -125,7 +123,7 @@ cd ../..
 git clone https://github.com/wang-xinyu/tensorrtx
 ```
 
-3. Generate `yolov5.wst` model. If there is segmentation fault core dumped or illegal operation while generating the `yolov5.wst` file, you can use the following notebook to generate the files/  <a href="https://colab.research.google.com/drive/1vP-Js2SrubJe_ZtVRs0ACxfaCDK2Auc5?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+3. Generate `yolov5.wst` model. If there is segmentation fault core dumped or illegal operation while generating the `yolov5.wst` file, you can use the following notebook to generate the files.  <a href="https://colab.research.google.com/drive/1vP-Js2SrubJe_ZtVRs0ACxfaCDK2Auc5?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
 ```shell
