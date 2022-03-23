@@ -1,4 +1,5 @@
 #include<iostream>
+#include <string>
 #include "manager.hpp"
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -92,10 +93,10 @@ public:
   for (DetectBox detectbox : det){
 
     darknet_ros_msgs::BoundingBox boundingBox;
-    
-    std::cout << "CHECK detect x: " << detectbox.x1  << ", y:" << detectbox.y1 << ", confidence: " << (float)detectbox.confidence <<  std::endl;
+    std::vector<string> classNames = { "Tello", "F450" };
+    std::cout << "CHECK detect x: " << detectbox.x1  << ", y:" << detectbox.y1 << ", confidence: " << (float)detectbox.confidence << ", class: " << classNames[detectbox.classID] << ", trackid: " << detectbox.trackID <<  std::endl;
 
-    // boundingBox.Class = detectbox.classID;
+    boundingBox.Class = classNames[detectbox.classID];
     boundingBox.id = detectbox.trackID;
     boundingBox.probability = detectbox.confidence;
     boundingBox.xmin = detectbox.x1;
@@ -104,7 +105,7 @@ public:
     boundingBox.ymax = detectbox.y2;
     boundingBoxesResults_.bounding_boxes.push_back(boundingBox);
 
-    std::cout << "CHECK publish x: " << boundingBox.xmin  << ", y:" << boundingBox.ymin << ", confidence: " << (float)boundingBox.probability <<  std::endl;
+    std::cout << "CHECK publish x: " << boundingBox.xmin  << ", y:" << boundingBox.ymin << ", confidence: " << (float)boundingBox.probability << ", class: " << boundingBox.Class << ", trackid: " << boundingBox.id << std::endl;
   }
 
   boundingBoxesResults_.header.stamp = ros::Time::now();
@@ -114,21 +115,6 @@ public:
 
   boundingBoxesResults_.bounding_boxes.clear();
 
-
-
-    // // Run Canny edge detector on image
-    // cv::Mat src = cv_ptr->image;
-    // cv::Mat dst;
-    // cv::Canny( src, dst, 0, 0, 3 );
-
-    // // Update GUI Window
-    // cv::imshow("source", src);
-    // cv::imshow("canny", dst);
-    // cv::waitKey(3);
-
-    // sensor_msgs::ImagePtr msg_out = cv_bridge::CvImage(std_msgs::Header(), "mono8", dst).toImageMsg();
-    // Output modified video stream
-    // image_pub_.publish(msg_out);
   }
 };
 

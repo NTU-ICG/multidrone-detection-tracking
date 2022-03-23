@@ -189,7 +189,7 @@ int yolov5_trt_detect(void *h, cv::Mat &img, float threshold,std::vector<DetectB
         float conf;
         cv::Rect r = get_rect(img, res[i].bbox);
  
-        DetectBox dd(r.x,r.y,r.x + r.width,r.y + r.height,(float)res[i].conf,(int)res[i].class_id);
+        DetectBox dd(r.x,r.y,r.x + r.width,r.y + r.height,(float)res[i].conf,(float)res[i].class_id);
         det.push_back(dd);
         // std::cout << "x: " << r.x  << ", y:" << r.y << ", confidence: " << (float)res[i].conf << ", class: " << (int)res[i].class_id << std::endl;
     }

@@ -30,8 +30,8 @@ int Trtyolosort::TrtDetect(cv::Mat &frame,float &conf_thresh,std::vector<DetectB
 	// yolo detect
 	auto ret = yolov5_trt_detect(trt_engine, frame, conf_thresh, det);
 	showDetection(frame,det,"det");
-	// DS->sort(frame,det);
-	// showDetection(frame,det,"track");
+	DS->sort(frame,det);
+	showDetection(frame,det,"track");
 
 	// std::cout << "X1: " << det[0].x1 << std::endl;
 

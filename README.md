@@ -55,7 +55,7 @@ cd yolov5-deepsort-tensorrt
 // before you cmake and make, please change ./src/main.cpp char* yolo_engine = ""; char* sort_engine = ""; to your own path
 mkdir build 
 cmake ..
-make 
+make && rm ./yolosort && mv devel/lib/yolosort/yolosort ./ 
 ```
 if you face any errors, please see this [article](https://blog.csdn.net/weixin_42264234/article/details/120152117) or see `Errors` section.
 
