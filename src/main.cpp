@@ -58,9 +58,8 @@ public:
 
 
 
-	// yolo_engine = "../resources/best_colab.engine";
-  yolo_engine = "../resources/best_6_0_s.engine";
-	sort_engine = "../resources/deepsort.engine";
+  yolo_engine = "src/drone-3d-detection/resources/yolov5s.engine";
+	sort_engine = "src/drone-3d-detection/resources/deepsort.engine";
 	
 	yosort = new Trtyolosort(yolo_engine,sort_engine);
 

@@ -48,40 +48,68 @@ and attention!!! the number of deepsort tracking is 70+, not single or 10-20 per
 
 ------ -->
 
-## Build and Run
+## Build and Run 
+Follow the instructions from [darknet_ros](https://github.com/leggedrobotics/darknet_ros) and build in your `catkin_ws`.
+
+You may run the ros app either as a executable or ros package.
+
+### Run using executable
 ```shell
 git clone https://github.com/NTU-UAVG/drone-3d-detection.git
-cd yolov5-deepsort-tensorrt
+cd drone-3d-detection
+
 // before you cmake and make, please change ./src/main.cpp char* yolo_engine = ""; char* sort_engine = ""; to your own path
+
 mkdir build 
+cd build
 cmake ..
 make && rm ./yolosort && mv devel/lib/yolosort/yolosort ./ 
 ```
 if you face any errors, please see this [article](https://blog.csdn.net/weixin_42264234/article/details/120152117) or see `Errors` section.
 
+### Run using rosrun
+- Clone the repository into the `src` folder
+```shell
+cd ~/catkin_ws/src
+git clone https://github.com/NTU-UAVG/drone-3d-detection.git
+```
+- Create a folder named `resources` inside `drone-3d-detection` and add the `yolov5s.engine` and `deepsort.engine` inside this folder.
+```shell
+cd drone-3d-detection
+mkdir resources
+// add both engine files in resources
+```
+
+
+- Build yolosort using `catkin build`
+```shell
+cd ~/catkin_ws
+catkin build yolosort
+```
+
+- Run yolosort package
+```shell
+source ~/catkin_ws/devel/setup.bash
+rospack list        // check if yolosort package exist
+rosrun yolosort yolosort
+```
+
 
 ## ROS commands
-
-Follow the instructions from [darknet_ros](https://github.com/leggedrobotics/darknet_ros) and build in your `catkin_ws`.
-
-First tab: Start roscore
+- First tab: Start roscore
 ```shell 
 roscore
 ```
-Second tab: Echo the publisher
+- Second tab: Echo the publisher
 ```shell
 source ~/catkin_ws/devel/setup.bash
 rostopic echo /detection/bounding_boxes 
 ```
+- Third tab: Start yolosort from executable or ros (Refer to Build and Run above)
 
-Third tab (start yolosort), may need to copy the executatble to build
+- Fourth tab: Start stream input from rosbag file
 ```shell
-source ~/catkin_ws/devel/setup.bash
-./yolosort
-```
-Fourth tab: Start stream input from rosbag file
-```shell
-rosbag play 2022-02-09-13-50-38.bag
+rosbag play <BAGFILE.bag>
 ```
 
 ## Dataset

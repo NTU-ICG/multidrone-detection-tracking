@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>yolosort</name>
+  <version>1.0.0</version>
+  <description>A drone detection and tracking system using YOLOv5, TensorRT, Deep SORT and ROS for Jetson Xavier NX</description>
+  <maintainer email="xjp99v5@gmail.com">Jiaping Xiao</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/NTU-UAVG/drone-3d-detection</url>
+  <author email="xjp99v5@gmail.com">Jiaping Xiao</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>boost</depend>
+  <depend>libopencv-dev</depend>
+  <depend>libx11</depend>
+  <depend>libxt-dev</depend>
+  <depend>libxext</depend>
+
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>image_transport</depend>
+  <depend>cv_bridge</depend>
+  <depend>sensor_msgs</depend>
+  <depend>message_generation</depend>
+  <depend>darknet_ros_msgs</depend>
+  <depend>actionlib</depend>
+  <depend>nodelet</depend>
+
+  <!-- Test dependencies -->
+  <test_depend>rostest</test_depend>
+  <test_depend>wget</test_depend>
+
+  <!-- Export nodelet plugins -->
+  <export>
+    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
+  </export>
+</package>
