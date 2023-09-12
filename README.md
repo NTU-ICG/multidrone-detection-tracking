@@ -1,7 +1,7 @@
 # Real-Time Multi-Drone Detection and Tracking for Pursuit-Evasion with Parameter Search
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-This repository uses fine-tuned yolov5, deepsort and ROS to perform multi-drone detection and tracking, which can run for both Jetson Xavier NX and Jetson Nano.
+Highlights: This repository uses fine-tuned yolov5, deepsort and ROS to perform multi-drone detection and tracking, which can run for both Jetson Xavier NX and Jetson Nano.
 
 ## Abstract
 Real-time multi-object detection and tracking are primarily required for intelligent multi-vehicle systems. This paper presents a whole life cycle multi-drone detection and tracking approach for collaborative drone pursuit-evasion operations, incorporating parameter search and edge acceleration techniques. Specifically, to address the single drone detection limitation of existing drone datasets, we first collect a new dataset "UAVG-Drone" from various environments and then establish a model benchmark with different YOLOv5 models. The hyperparameter of YOLOv5s is further fine-tuned with a genetic algorithm with 26.9\% improvement in terms of mean average precision (mAP). Moreover, we develop an edge-accelerated detector and tracking system Drone-YOLOSORT focusing on "evader" and "pursuer" drones using TensorRT and deliver a ROS package for modular integration. Our system is able to reach about 24.3 FPS during inferencing, fulfilling the criteria of real-time drone detection at 20 FPS.
