@@ -67,9 +67,9 @@ if you face any errors, please see this [article](https://blog.csdn.net/weixin_4
 - Clone the repository into the `src` folder
 ```shell
 cd ~/catkin_ws/src
-git clone https://github.com/NTU-UAVG/drone-3d-detection.git
+git clone https://github.com/NTU-UAVG/multidrone-detection-tracking.git
 ```
-- Create a folder named `resources` inside `drone-3d-detection` and add the `yolov5s.engine` and `deepsort.engine` inside this folder.
+- Create a folder named `resources` inside `multidrone-detection-tracking` and add the `yolov5s.engine` and `deepsort.engine` inside this folder.
 ```shell
 cd drone-3d-detection
 mkdir resources
