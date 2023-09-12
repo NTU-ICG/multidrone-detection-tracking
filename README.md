@@ -16,12 +16,6 @@ Real-time multi-object detection and tracking are primarily required for intelli
 <img src="assets/drone.gif" >
 </div>
 
-## TODO:
-- Create ROS package for project
-- Fix class labels from string to int
-- Test for multi-drone detection
-- Add engine files to releases
-
 
 ## Requirements
 1. Jetson Nano or Jetson Xavier NX
