@@ -35,8 +35,8 @@ Real-time multi-object detection and tracking are primarily required for intelli
 
 <!-- ## Speed
 
-Whole process time from read image to finished deepsort (include every img preprocess and postprocess)
-and attention!!! the number of deepsort tracking is 70+, not single or 10-20 persons, is 70+. And all results can get in Jetson Xavier nx.
+The whole process time from read image to finished deepsort (include every img preprocess and postprocess)
+and attention!!! the number of deepsort tracking is 70+, not single or 10-20 persons, is 70+. And all results can be in Jetson Xavier NX.
 | Backbone        | before TensorRT without tracking |before TensorRT with tracking |TensortRT(detection)| TensorRT(detection + tracking) | FPS(detection + tracking) |
 | :-------------- | --------------- | ------------------ |--------------|------------------------------ | ------------------------- |
 | Yolov5s_416      | 100ms           | 0.9s|10-15ms|100-150ms                          | 8 ~ 9                   |
@@ -47,12 +47,12 @@ and attention!!! the number of deepsort tracking is 70+, not single or 10-20 per
 ## Build and Run 
 Follow the instructions from [darknet_ros](https://github.com/leggedrobotics/darknet_ros) and build in your `catkin_ws`.
 
-You may run the ros app either as a executable or ros package.
+You may run the ros app either as an executable or ros package.
 
 ### Run using executable
 ```shell
-git clone https://github.com/NTU-UAVG/drone-3d-detection.git
-cd drone-3d-detection
+git clone https://github.com/NTU-UAVG/multidrone-detection-tracking.git
+cd multidrone-detection-tracking
 
 // before you cmake and make, please change ./src/main.cpp char* yolo_engine = ""; char* sort_engine = ""; to your own path
 
@@ -71,7 +71,7 @@ git clone https://github.com/NTU-UAVG/multidrone-detection-tracking.git
 ```
 - Create a folder named `resources` inside `multidrone-detection-tracking` and add the `yolov5s.engine` and `deepsort.engine` inside this folder.
 ```shell
-cd drone-3d-detection
+cd multidrone-detection-tracking
 mkdir resources
 // add both engine files in resources
 ```
@@ -112,7 +112,7 @@ rosbag play <BAGFILE.bag>
 The drone dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing).
 
 ## Model
-You need two model, one is yolov5 model for detection, which is generated from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). The other model is deepsort model used for tracking.
+You need two models, one is the yolov5 model for detection, which is generated from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). The other model is the deepsort model used for tracking.
 
 There are two models to be generated, one for yolov5 and one for deepsort. The models can be found under resources.
 
@@ -120,7 +120,7 @@ There are two models to be generated, one for yolov5 and one for deepsort. The m
 Yolov5s was chosen for this project. You can use the following Colab notebook to train on the drones dataset. <a href="https://colab.research.google.com/drive/1ruLEtq_tsy0xN2vebTKmnCOIAOwvgwcB?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
-Note that pretrained models for deepsort can be retrieved from [deepsort](https://github.com/ZQPei/deep_sort_pytorch). If you need to use your own model, refer to `For Other Custom Models` section.
+Note that pretrained models for deepsort can be retrieved from [deepsort](https://github.com/ZQPei/deep_sort_pytorch). If you need to use your own model, refer to the `For Other Custom Models` section.
 You can also refer to [tensorrtx official readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5).
 
 The following is deepsort.onnx and deesort.engine files, you can find in baiduyun and [https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort)
@@ -147,7 +147,7 @@ cd ../..
 git clone https://github.com/wang-xinyu/tensorrtx
 ```
 
-3. Generate `yolov5.wst` model. If there is segmentation fault core dumped or illegal operation while generating the `yolov5.wst` file, you can use the following notebook to generate the files.  <a href="https://colab.research.google.com/drive/1vP-Js2SrubJe_ZtVRs0ACxfaCDK2Auc5?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+3. Generate `yolov5.wst` model. If there is a segmentation fault core dumped or illegal operation while generating the `yolov5.wst` file, you can use the following notebook to generate the files.  <a href="https://colab.research.google.com/drive/1vP-Js2SrubJe_ZtVRs0ACxfaCDK2Auc5?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
 ```shell
@@ -262,7 +262,7 @@ Change `yololayer.h` lines 20,21 and 22 (CLASS_NUM，INPUT_H,INPUT_W) to your ow
 
 ```shell
 cd {tensorrtx}/yolov5/
-// update CLASS_NUM in yololayer.h if your model is trained on custom dataset
+// update CLASS_NUM in yololayer.h if your model is trained on a custom dataset
 
 mkdir build
 cd build
