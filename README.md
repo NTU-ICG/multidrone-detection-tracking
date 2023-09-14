@@ -109,7 +109,16 @@ rosbag play <BAGFILE.bag>
 ```
 
 ## Dataset
-The drone dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing).
+The "UAVG-Drone" dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing). 
+*Data distribution
+<div style="text-align: center">
+<img src="assets/pipeline.PNG" >
+</div>
+
+*Data analysis
+<div style="text-align: center">
+<img src="assets/pipeline.PNG" >
+</div>
 
 ## Model
 You need two models, one is the yolov5 model for detection, which is generated from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). The other model is the deepsort model used for tracking.
