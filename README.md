@@ -8,12 +8,12 @@ Real-time multi-object detection and tracking are primarily required for intelli
 
 ## Pipeline
 <div style="text-align: center">
-<img src="assets/pipeline.PNG" >
+<img src="assets/pipeline.PNG" width="700" >
 </div>
 
 ## Sample Inference
 <div style="text-align: center">
-<img src="assets/drone.gif" >
+<img src="assets/drone.gif" width="700" >
 </div>
 
 
@@ -112,18 +112,18 @@ rosbag play <BAGFILE.bag>
 The "UAVG-Drone" dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing). 
 
 <div style="text-align: center">
-<img src="assets/dataset_count_plot2.png" >
+<img src="assets/dataset_count_plot2.png" width="700" >
 </div>
 <p align="left"><i>Dataset distribution from various resources </i></p>
 
 
 <div style="text-align: center">
-<img src="assets/labels.jpg" >
+<img src="assets/labels.jpg" width="700" >
 </div>
 <p align="left"><i>Data property distribution </i></p>
 
 <div style="text-align: center">
-<img src="assets/labels_correlogram.jpg" >
+<img src="assets/labels_correlogram.jpg" width="700">
 </div>
 <p align="left"><i>Data property correlogram </i></p>
 
