@@ -120,7 +120,6 @@ The "UAVG-Drone" dataset can be found in [Drone Dataset](https://drive.google.co
 <div style="text-align: center">
 <img src="assets/labels.jpg" width="700" >
 </div>
-<p align="left"><i>Data property distribution </i></p>
 
 
 <p align="left"><i>Data property correlogram </i></p>
