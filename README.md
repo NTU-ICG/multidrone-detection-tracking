@@ -111,9 +111,10 @@ rosbag play <BAGFILE.bag>
 ```
 
 ## Dataset
-The "UAVG-Drone" dataset can be found in [uavgdrone](https://drive.google.com/file/d/1V66KWmuK_j90h-ddxXPDmn94tmH2f_YW/view?usp=sharing).
+The "UAVG-Drone" dataset can be found in [uavgdrone](https://drive.google.com/file/d/1V66KWmuK_j90h-ddxXPDmn94tmH2f_YW/view?usp=sharing), which includes "UAVG-Drone-2c" and "UAVG-Drone-3c".
 The "UAVG_Drone" tracking dataset can be found in [uavgdrone-tracking](https://drive.google.com/file/d/1RFucbdBalSC62bMMYxU_uMWApcz_GKk3/view?usp=sharing).
-<p align="left"><i>Dataset distribution from various resources </i></p>
+### "UAVG-Drone-2c" 
+<p align="left"><i>distribution from various resources </i></p>
 <div style="text-align: center">
 <img src="assets/dataset_count_plot2.png" width="700" >
 </div>
@@ -129,6 +130,26 @@ The "UAVG_Drone" tracking dataset can be found in [uavgdrone-tracking](https://d
 <div style="text-align: center">
 <img src="assets/labels_correlogram.jpg" width="700">
 </div>
+
+
+### "UAVG-Drone-3c"
+
+<p align="left"><i>distribution from various resources </i></p>
+<div style="text-align: center">
+<img src="assets/datadistributionsplit.png" width="700" >
+</div>
+
+<p align="left"><i>Data property distribution </i></p>
+<div style="text-align: center">
+<img src="assets/label-distribution.jpg.jpg" width="700" >
+</div>
+
+
+<p align="left"><i>Data property correlogram </i></p>
+<div style="text-align: center">
+<img src="assets/Labels_correlation.jpg" width="700">
+</div>
+
 
 ## Model
 You need two models, one is the yolov5 model for detection, which is generated from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). The other model is the deepsort model used for tracking.
