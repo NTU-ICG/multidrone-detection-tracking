@@ -137,8 +137,11 @@ There are two models to be generated, one for yolov5 and one for deepsort. The m
 
 ### Model training
 Yolov5s was chosen for this project. You can use the following Colab notebook to train on the drones dataset. <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_YOLOv5_Tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+
 We also provide other training models such as Yolov8, Swin-Transformer, RTMDet. These models can be trained with the following Colab notebook.
+
 Yolov8: <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_YOLOv8_Tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+
 Swin-Transformer and RTMDet: <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_Swin_Transformer.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
