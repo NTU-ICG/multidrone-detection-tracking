@@ -141,7 +141,7 @@ The "UAVG_Drone" tracking dataset can be found in [uavgdrone-tracking](https://d
 
 <p align="left"><i>Data property distribution </i></p>
 <div style="text-align: center">
-<img src="assets/label-distribution.jpg.jpg" width="700" >
+<img src="assets/label-distribution.jpg" width="700" >
 </div>
 
 
