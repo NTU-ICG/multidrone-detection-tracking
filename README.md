@@ -6,7 +6,7 @@ Highlights: This repository uses fine-tuned yolov5, deepsort and ROS to perform 
 ***If you are using the code, please consider giving us a star 🌟.
 
 ## Abstract
-Real-time multi-object detection and tracking are primarily required for intelligent multi-vehicle systems. This paper presents a whole life cycle multi-drone detection and tracking approach for collaborative drone pursuit-evasion operations, incorporating parameter search and edge acceleration techniques. Specifically, to address the single drone detection limitation of existing drone datasets, we first collect a new dataset "UAVG-Drone" from various environments and then establish a model benchmark with different YOLOv5 models. The hyperparameter of YOLOv5s is further fine-tuned with a genetic algorithm with 26.9\% improvement in terms of mean average precision (mAP). Moreover, we develop an edge-accelerated detector and tracking system Drone-YOLOSORT focusing on "evader" and "pursuer" drones using TensorRT and deliver a ROS package for modular integration. Our system is able to reach about 24.3 FPS during inferencing, fulfilling the criteria of real-time drone detection at 20 FPS.
+Real-time multi-object detection and tracking are primarily required for intelligent multi-vehicle systems. This paper presents a whole life cycle multi-drone detection and tracking approach for collaborative drone pursuit-evasion operations, incorporating parameter search and edge acceleration techniques. Specifically, to address the single-class drone detection limitation of existing drone datasets, we first collect a new dataset "UAVG-Drone" from various environments and then establish a performance benchmark with different models, such as YOLOv5, YOLOv8, and Swin Transformer. Based on the outstanding performance regarding accuracy, inference speed, etc., the selected YOLOv5s is further fine-tuned with a genetic algorithm, which achieves 14.8% / 3.6% improvement over 2 drone classes and 3 drone classes respectively in terms of mean average precision (mAP). Moreover, we develop an edge-accelerated detector and tracking system Drone-YOLOSORT focusing on "evader" and "pursuer" drones using TensorRT and deliver a ROS package for modular integration, which can be easily applied in a multi-vehicle system for recognizing friends and non-friends. Our system is able to reach about 24.3 FPS during inferencing, fulfilling the criteria of real-time drone detection at 20 FPS.
 
 ## Pipeline
 <div style="text-align: center">
@@ -111,7 +111,8 @@ rosbag play <BAGFILE.bag>
 ```
 
 ## Dataset
-The "UAVG-Drone" dataset can be found in [Drone Dataset](https://drive.google.com/drive/folders/1-RzSz0rukpcSXK2yFgsa0Ubnl3FPRx59?usp=sharing).
+The "UAVG-Drone" dataset can be found in [uavgdrone](https://drive.google.com/file/d/1V66KWmuK_j90h-ddxXPDmn94tmH2f_YW/view?usp=sharing).
+The "UAVG_Drone" tracking dataset can be found in [uavgdrone-tracking](https://drive.google.com/file/d/1RFucbdBalSC62bMMYxU_uMWApcz_GKk3/view?usp=sharing).
 <p align="left"><i>Dataset distribution from various resources </i></p>
 <div style="text-align: center">
 <img src="assets/dataset_count_plot2.png" width="700" >
@@ -134,8 +135,12 @@ You need two models, one is the yolov5 model for detection, which is generated f
 
 There are two models to be generated, one for yolov5 and one for deepsort. The models can be found under resources.
 
-### YOLOv5 model training
-Yolov5s was chosen for this project. You can use the following Colab notebook to train on the drones dataset. <a href="https://colab.research.google.com/drive/1ruLEtq_tsy0xN2vebTKmnCOIAOwvgwcB?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+### Model training
+Yolov5s was chosen for this project. You can use the following Colab notebook to train on the drones dataset. <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_YOLOv5_Tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+We also provide other training models such as Yolov8, Swin-Transformer, RTMDet. These models can be trained with the following Colab notebook.
+Yolov8: <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_YOLOv8_Tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+Swin-Transformer and RTMDet: <a href="https://github.com/NTU-UAVG/multidrone-detection-tracking/blob/main/assets/Drone_Detection_with_Swin_Transformer.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+
 
 
 Note that pretrained models for deepsort can be retrieved from [deepsort](https://github.com/ZQPei/deep_sort_pytorch). If you need to use your own model, refer to the `For Other Custom Models` section.
