@@ -1,7 +1,7 @@
-# Real-Time Multi-Drone Detection and Tracking for Pursuit-Evasion with Parameter Search
+This is the official code for paper "Real-Time Multi-Drone Detection and Tracking for Pursuit-Evasion with Parameter Search"
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-Highlights: This repository uses fine-tuned yolov5, deepsort and ROS to perform multi-drone detection and tracking, which can run for both Jetson Xavier NX and Jetson Nano.
+Highlights: This repository uses fine-tuned yolov5 (benchmarked with yolov8, Swin-Transformer and RTMDet), deepsort and ROS to perform multi-drone detection and tracking, which can run for both Jetson Xavier NX and Jetson Nano.
 
 ***If you are using the code, please consider giving us a star 🌟.
 
