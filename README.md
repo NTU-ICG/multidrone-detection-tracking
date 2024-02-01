@@ -5,7 +5,21 @@ This is the official code for paper "Real-Time Multi-Drone Detection and Trackin
 
 Highlights: This repository uses fine-tuned yolov5 (benchmarked with yolov8, Swin-Transformer and RTMDet), deepsort and ROS to perform multi-drone detection and tracking, which can run for both Jetson Xavier NX and Jetson Nano.
 
-***If you are using the code, please consider giving us a star 🌟.
+***If you are using the code, please consider citing our paper and giving us a star 🌟.
+
+```
+@ARTICLE{10417793,
+  author={Xiao, Jiaping and Chee, Jian Hui and Feroskhan, Mir},
+  journal={IEEE Transactions on Intelligent Vehicles}, 
+  title={Real-Time Multi-Drone Detection and Tracking for Pursuit-Evasion With Parameter Search}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-11},
+  keywords={Drones;Benchmark testing;Image edge detection;Cameras;YOLO;Real-time systems;Biological system modeling;Drones;Datasets;Object detection and tracking},
+  doi={10.1109/TIV.2024.3360433}}
+
+```
 
 ## Abstract
 Real-time multi-object detection and tracking are primarily required for intelligent multi-vehicle systems. This paper presents a whole life cycle multi-drone detection and tracking approach for collaborative drone pursuit-evasion operations, incorporating parameter search and edge acceleration techniques. Specifically, to address the single-class drone detection limitation of existing drone datasets, we first collect a new dataset "ICG-Drone" from various environments and then establish a performance benchmark with different models, such as YOLOv5, YOLOv8, and Swin Transformer. Based on the outstanding performance regarding accuracy, inference speed, etc., the selected YOLOv5s is further fine-tuned with a genetic algorithm, which achieves 14.8% / 3.6% improvement over 2 drone classes and 3 drone classes respectively in terms of mean average precision (mAP). Moreover, we develop an edge-accelerated detector and tracking system Drone-YOLOSORT focusing on "evader" and "pursuer" drones using TensorRT and deliver a ROS package for modular integration, which can be easily applied in a multi-vehicle system for recognizing friends and non-friends. Our system is able to reach about 24.3 FPS during inferencing, fulfilling the criteria of real-time drone detection at 20 FPS.
